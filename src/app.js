@@ -83,7 +83,6 @@ app.get('/contracts/:id',getProfile ,async (req, res) =>{
     const {Profile} = req.app.get('models');
     // TODO - some sort of validation that the caller is actually an admin
     const {start, end} = req.query;
-    console.log(req.query);
     const professions = await Profile.findAll({
         attributes: ['profession', 
             [sequelize.fn('sum', sequelize.col('price')), 'total_price']],
@@ -126,7 +125,6 @@ app.get('/contracts/:id',getProfile ,async (req, res) =>{
         // only clients can pay
         return res.status(401).end();
     }
-    console.log(LOCK);
     await sequelize.transaction(async (t) => {
         var job = await Job.findOne({
             lock: t.LOCK.UPDATE,
