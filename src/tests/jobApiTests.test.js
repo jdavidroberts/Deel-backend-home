@@ -2,13 +2,11 @@ const { resolveSoa } = require('dns');
 const http = require('http');
 const { resolve } = require('path');
 
-// I am not handling the asynchronous nature of these tests correctly.
-// Specifically the tests are completing before the response handlers
-// finish.  This is at least partially rooted in the fact that I am
+// The async handling in these tests, after alot of tweaking is almost
+// right but still has issues.
+// Specifically the tests are sometimes completing before the response handlers
+// finish in some cases.  This is at least partially rooted in the fact that I am
 // using jest, a unit test framework, to run tests that aren't unit tests.
-// I do get errors when the tests fail, so there is value in these tests.
-// But jest sees them as successful even when they fail, which is obviously
-// not good.  But I did get value from these in finding bugs and validating.
 
 async function httpWrapper(requestOptions, expectedStatus, dataFunc) {
   return new Promise((resolve, reject) => {
