@@ -8,7 +8,7 @@ including the joins associated with the best-profession endpoints and the
 updates associated with the pay endpoint.  I did include a transaction and
 used update locks when querying the data to update to avoid deadlock. 
 
-There ARE tests for all of the done work.  The seed has to be run before the
+There ARE tests for almost all of the done work.  The seed has to be run before the
 tests (because the test of the pay endpoint has side effects).
 
 I made a decision at the beginning to use jest tests instead of Postman to 
